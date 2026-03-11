@@ -58,7 +58,7 @@ const Home = () => {
         {/* RESUME BUTTONS USING THE IMPORTED FILE */}
         <div className="btn-group">
           <a href={resumeFile} download="Vibha_Yadav_Resume.pdf" className="btn-resume">
-            Download CV
+            Download Resume
           </a>
           <a href={resumeFile} target="_blank" rel="noreferrer" className="btn-view">
             View Resume
