@@ -1,0 +1,71 @@
+/* Global Reset */
+html, body {
+  cursor: none;
+}
+
+/* Force hide on interactive elements */
+a, button, .nav-btn, .project-card, .github-btn, input, textarea {
+  cursor: none !important;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #c084fc;
+  box-shadow: 0 0 15px #c084fc;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(192, 132, 252, 0.4);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, width 0.3s, height 0.3s, border 0.3s, background-color 0.3s;
+  background-color: rgba(192, 132, 252, 0.02);
+  backdrop-filter: blur(1px);
+}
+
+/* Hovering State */
+.cursor-dot.pointer {
+  width: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 20px #fff;
+}
+
+.cursor-outline.pointer {
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Click Animation Pulse */
+.cursor-dot.clicking {
+  transform: translate(-50%, -50%) scale(0.5);
+}
+
+.cursor-outline.clicking {
+  transform: translate(-50%, -50%) scale(1.5);
+  background-color: rgba(192, 132, 252, 0.2);
+  border-color: #c084fc;
+}
+
+/* Hide on mobile/touch */
+@media (max-width: 768px) {
+  .cursor-dot, .cursor-outline {
+    display: none;
+  }
+  html, body {
+    cursor: auto;
+  }
+}

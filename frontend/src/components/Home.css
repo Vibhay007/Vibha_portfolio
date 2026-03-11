@@ -1,0 +1,171 @@
+.home {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6rem;
+  padding: 6rem 1.5rem;
+  overflow: hidden;
+}
+
+/* Background glow */
+.home::before,
+.home::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  background: linear-gradient(135deg, #8f94fb, #ff9bd5);
+  filter: blur(160px);
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.home::before {
+  top: -140px;
+  left: -140px;
+}
+
+.home::after {
+  bottom: -140px;
+  right: -140px;
+}
+
+/* CONTENT */
+.home-content {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin-left: 4rem;
+}
+
+/* Main Heading */
+.home-content h1 {
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #ffffff, #dcdcff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Sub Heading */
+.home-content h3 {
+  font-size: 2.1rem;
+  margin: 0.8rem 0 1.2rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #8f94fb, #ff9bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Paragraph */
+.home-content p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 560px;
+}
+
+/* IMAGE CONTAINER */
+.home-img {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Image */
+.home-img img {
+  width: 420px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 0 0 10px rgba(143, 148, 251, 0.18),
+    0 35px 80px rgba(0, 0, 0, 0.45);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+  margin-right: 4rem;
+}
+
+/* Image Hover */
+.home-img img:hover {
+  transform: scale(1.06);
+  box-shadow:
+    0 0 0 14px rgba(255, 155, 213, 0.22),
+    0 45px 100px rgba(0, 0, 0, 0.55);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .home {
+    flex-direction: column;
+    text-align: center;
+    gap: 4rem;
+    padding-top: 7rem;
+  }
+
+  .home-content h1 {
+    font-size: 2.6rem;
+  }
+
+  .home-content h3 {
+    font-size: 1.7rem;
+  }
+
+  .home-img img {
+    width: 260px;
+  }
+}
+
+/* ... Your existing styles remain exactly as they are ... */
+
+/* RESUME SECTION STYLES */
+.btn-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.btn-resume, .btn-view {
+  padding: 0.9rem 2.2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  display: inline-block;
+}
+
+/* Gradient Download Button */
+.btn-resume {
+  background: linear-gradient(135deg, #8f94fb, #ff9bd5);
+  color: #fff;
+  border: none;
+  box-shadow: 0 10px 20px rgba(143, 148, 251, 0.3);
+}
+
+.btn-resume:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(255, 155, 213, 0.4);
+}
+
+/* Outline View Button */
+.btn-view {
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-view:hover {
+  border-color: #ff9bd5;
+  background: rgba(255, 155, 213, 0.1);
+  transform: translateY(-3px);
+}
+
+/* RESPONSIVE BUTTONS */
+@media (max-width: 900px) {
+  .btn-group {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+.projects {
+  padding: 100px 10%;
+  /* Removed solid background to let the Starry Background show through */
+  background: transparent; 
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #fff;
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.section-title span {
+  /* Using the Lilac color from your "Mern Developer" text */
+  color: #c084fc;
+  text-shadow: 0 0 20px rgba(192, 132, 252, 0.4);
+}
+
+.underline {
+  width: 50px;
+  height: 4px;
+  background: #c084fc;
+  margin: 15px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(192, 132, 252, 0.5);
+}
+
+/* Grid Settings */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+}
+
+/* Glassmorphism Card Design */
+.project-card {
+  /* Semi-transparent background to see stars behind it */
+  background: rgba(255, 255, 255, 0.03); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.project-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  border-color: rgba(192, 132, 252, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 
+              0 0 20px rgba(192, 132, 252, 0.1);
+}
+
+/* Image Wrapper */
+.project-image {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 5, 5, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.15);
+}
+
+.view-btn {
+  padding: 14px 28px;
+  background: #c084fc;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 20px rgba(192, 132, 252, 0.3);
+}
+
+.view-btn:hover {
+  background: #fff;
+  color: #c084fc;
+  transform: scale(1.1);
+}
+
+/* Content Layout */
+.project-content {
+  padding: 2rem;
+}
+
+.tech-stack {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.tech-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: rgba(192, 132, 252, 0.1);
+  color: #d8b4fe;
+  padding: 5px 14px;
+  border-radius: 50px;
+  border: 1px solid rgba(192, 132, 252, 0.2);
+}
+
+.project-content h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.project-content p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+}
+
+/* GitHub CTA Styling (Updated to match space theme) */
+.github-cta {
+  margin-top: 8rem;
+  padding: 4rem;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px dashed rgba(192, 132, 252, 0.4);
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.cta-content h3 {
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+
+.cta-content p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
+  max-width: 500px;
+}
+
+.github-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 36px;
+  background: #c084fc;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 20px;
+  white-space: nowrap;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 30px rgba(192, 132, 252, 0.3);
+}
+
+.github-btn:hover {
+  background: #a855f7;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(192, 132, 252, 0.5);
+}
+
+/* Responsive Fixes */
+@media (max-width: 992px) {
+  .github-cta {
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+  .cta-content p { margin: 0 auto; }
+}
+
+@media (max-width: 768px) {
+  .projects { padding: 80px 5%; }
+  .section-title { font-size: 2.5rem; }
+}

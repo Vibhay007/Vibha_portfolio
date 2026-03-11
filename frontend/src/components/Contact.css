@@ -1,0 +1,144 @@
+.contact {
+  position: relative;
+  padding: 6rem 1.5rem;
+  background: radial-gradient(
+      circle at top left,
+      rgba(120, 130, 255, 0.18),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(255, 120, 200, 0.12),
+      transparent 40%
+    );
+  overflow: hidden;
+}
+
+/* Floating glow orbs */
+.contact::before,
+.contact::after {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: linear-gradient(135deg, #8f94fb, #4e54c8);
+  filter: blur(120px);
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.contact::before {
+  top: -120px;
+  left: -120px;
+}
+
+.contact::after {
+  bottom: -120px;
+  right: -120px;
+}
+
+/* Heading */
+.contact h2 {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #8f94fb, #ff9bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1.2px;
+}
+
+/* Glass Card */
+.contact form {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  margin: auto;
+  padding: 3rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+}
+
+/* Inputs */
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 1.6rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.35s ease;
+}
+
+/* Placeholder */
+.contact input::placeholder,
+.contact textarea::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Neon Focus */
+.contact input:focus,
+.contact textarea:focus {
+  border-color: #8f94fb;
+  box-shadow: 0 0 0 3px rgba(143, 148, 251, 0.45),
+    0 0 25px rgba(143, 148, 251, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Button */
+.contact .btn {
+  width: 100%;
+  padding: 1.1rem;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg, #8f94fb, #ff9bd5);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.6px;
+  transition: all 0.35s ease;
+}
+
+/* Button Hover */
+.contact .btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(143, 148, 251, 0.55);
+}
+
+/* Button Active */
+.contact .btn:active {
+  transform: translateY(0);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .contact h2 {
+    font-size: 2.3rem;
+  }
+
+  .contact form {
+    padding: 2.2rem;
+  }
+}
+.status-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: green;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

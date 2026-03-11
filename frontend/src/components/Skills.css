@@ -1,0 +1,120 @@
+#skills {
+  position: relative;
+  padding: 6rem 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Background glow */
+#skills::before,
+#skills::after {
+  content: "";
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  background: linear-gradient(135deg, #8f94fb, #ff9bd5);
+  filter: blur(150px);
+  opacity: 0.25;
+  z-index: 0;
+}
+
+#skills::before {
+  top: -140px;
+  left: -140px;
+}
+
+#skills::after {
+  bottom: -140px;
+  right: -140px;
+}
+
+/* Heading */
+#skills h2 {
+  position: relative;
+  z-index: 1;
+  font-size: 2.8rem;
+  margin-bottom: 4rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  background: linear-gradient(135deg, #8f94fb, #ff9bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Skills Grid */
+.skills-wrapper {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 130px));
+  justify-content: center;
+  gap: 2.4rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Skill Card */
+.skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 120px;
+  height: 120px;
+  padding: 1rem;
+
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  transition: all 0.4s ease;
+}
+
+/* Icon */
+.skill i {
+  font-size: 2.7rem;
+  color: #dcdcff;
+  transition: all 0.4s ease;
+}
+
+/* Skill Name */
+.skill span {
+  margin-top: 0.7rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.4px;
+}
+
+/* Hover Effects */
+.skill:hover {
+  transform: translateY(-8px) scale(1.08);
+  box-shadow:
+    0 0 20px rgba(143, 148, 251, 0.5),
+    0 0 40px rgba(255, 155, 213, 0.4);
+}
+
+.skill:hover i {
+  color: #fff;
+  transform: scale(1.15);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  #skills h2 {
+    font-size: 2.3rem;
+  }
+
+  .skill {
+    width: 105px;
+    height: 105px;
+  }
+
+  .skill i {
+    font-size: 2.3rem;
+  }
+}
