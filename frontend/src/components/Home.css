@@ -4,9 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 6rem;
-  padding: 6rem 1.5rem;
+  gap: 5rem;
+  padding: 6rem 6%;
   overflow: hidden;
+  flex-wrap: wrap;
 }
 
 /* Background glow */
@@ -36,8 +37,7 @@
 .home-content {
   position: relative;
   z-index: 1;
-  max-width: 620px;
-  margin-left: 4rem;
+  max-width: 600px;
 }
 
 /* Main Heading */
@@ -53,7 +53,7 @@
 
 /* Sub Heading */
 .home-content h3 {
-  font-size: 2.1rem;
+  font-size: 2rem;
   margin: 0.8rem 0 1.2rem;
   font-weight: 600;
   background: linear-gradient(135deg, #8f94fb, #ff9bd5);
@@ -63,10 +63,9 @@
 
 /* Paragraph */
 .home-content p {
-  font-size: 1.1rem;
-  line-height: 1.9;
+  font-size: 1.05rem;
+  line-height: 1.8;
   color: rgba(255, 255, 255, 0.78);
-  max-width: 560px;
 }
 
 /* IMAGE CONTAINER */
@@ -78,6 +77,7 @@
 /* Hero Image */
 .home-img img {
   width: 420px;
+  max-width: 100%;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid rgba(255, 255, 255, 0.35);
@@ -85,7 +85,6 @@
     0 0 0 10px rgba(143, 148, 251, 0.18),
     0 35px 80px rgba(0, 0, 0, 0.45);
   transition: transform 0.45s ease, box-shadow 0.45s ease;
-  margin-right: 4rem;
 }
 
 /* Image Hover */
@@ -96,36 +95,16 @@
     0 45px 100px rgba(0, 0, 0, 0.55);
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .home {
-    flex-direction: column;
-    text-align: center;
-    gap: 4rem;
-    padding-top: 7rem;
-  }
-
-  .home-content h1 {
-    font-size: 2.6rem;
-  }
-
-  .home-content h3 {
-    font-size: 1.7rem;
-  }
-
-  .home-img img {
-    width: 260px;
-  }
-}
-
-/* RESUME SECTION STYLES */
+/* BUTTONS */
 .btn-group {
   display: flex;
   gap: 1.5rem;
   margin-top: 2.5rem;
+  flex-wrap: wrap;
 }
 
-.btn-resume, .btn-view {
+.btn-resume,
+.btn-view {
   padding: 0.9rem 2.2rem;
   border-radius: 50px;
   font-size: 1rem;
@@ -135,7 +114,7 @@
   display: inline-block;
 }
 
-/* Gradient Download Button */
+/* Resume Button */
 .btn-resume {
   background: linear-gradient(135deg, #8f94fb, #ff9bd5);
   color: #fff;
@@ -148,7 +127,7 @@
   box-shadow: 0 15px 25px rgba(255, 155, 213, 0.4);
 }
 
-/* Outline View Button */
+/* View Button */
 .btn-view {
   color: #fff;
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -161,101 +140,87 @@
   transform: translateY(-3px);
 }
 
-/* RESPONSIVE BUTTONS */
-@media (max-width: 900px) {
-  .btn-group {
-    justify-content: center;
-  }
-}
+/* ---------- RESPONSIVE ---------- */
 
-/* EXTRA RESPONSIVE IMPROVEMENTS */
-
-/* LARGE TABLETS */
-@media (max-width: 1100px) {
+/* Large Tablets */
+@media (max-width:1100px){
 
   .home{
-    gap:4rem;
-    padding:5rem 2rem;
-  }
-
-  .home-content{
-    margin-left:2rem;
-  }
-
-  .home-img img{
-    width:360px;
-    margin-right:2rem;
-  }
-
-}
-
-/* TABLETS */
-@media (max-width: 768px){
-
-  .home{
-    flex-direction:column;
-    text-align:center;
     gap:3rem;
   }
 
-  .home-content{
-    margin-left:0;
-  }
-
-  .home-content p{
-    margin:0 auto;
-  }
-
   .home-img img{
-    margin-right:0;
+    width:340px;
+  }
+
+  .home-content h1{
+    font-size:3rem;
   }
 
 }
 
-/* MOBILE DEVICES */
-@media (max-width: 480px){
+/* Tablets */
+@media (max-width:900px){
 
   .home{
-    padding:5rem 1.2rem;
+    flex-direction:column-reverse;
+    text-align:center;
+    padding-top:7rem;
   }
 
+  .home-content{
+    max-width:700px;
+  }
+
+  .home-content p{
+    margin:auto;
+  }
+
+  .btn-group{
+    justify-content:center;
+  }
+
+}
+
+/* Mobile */
+@media (max-width:600px){
+
   .home-content h1{
-    font-size:2.2rem;
+    font-size:2.3rem;
   }
 
   .home-content h3{
-    font-size:1.5rem;
+    font-size:1.6rem;
   }
 
   .home-content p{
     font-size:0.95rem;
-    line-height:1.7;
   }
 
   .home-img img{
-    width:220px;
+    width:250px;
   }
 
 }
 
-/* SMALL PHONES */
-@media (max-width: 360px){
+/* Small Phones */
+@media (max-width:380px){
 
   .home-content h1{
-    font-size:1.9rem;
+    font-size:2rem;
   }
 
   .home-content h3{
-    font-size:1.3rem;
+    font-size:1.4rem;
   }
 
   .home-img img{
-    width:190px;
+    width:200px;
   }
 
   .btn-resume,
   .btn-view{
-    padding:0.8rem 1.6rem;
+    padding:0.75rem 1.5rem;
     font-size:0.9rem;
   }
 

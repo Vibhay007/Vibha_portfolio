@@ -13,7 +13,6 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Change header style on scroll
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -28,6 +27,7 @@ const Header = () => {
 
   return (
     <header className={`header ${scrolled ? "scrolled" : ""} ${menuOpen ? "menu-active" : ""}`}>
+      
       <div className="logo">
         Vibha <span>Yadav</span>
       </div>
@@ -45,9 +45,20 @@ const Header = () => {
         ))}
       </nav>
 
+      {/* Social Icons */}
+      <div className="social-icons">
+        <a href="https://github.com/Vibhay007"><i className="ri-github-fill"></i></a>
+        <a href="https://www.linkedin.com/in/vibha-yadav1106/"><i className="ri-linkedin-box-fill"></i></a>
+        <a href="#"><i className="ri-twitter-x-line"></i></a>
+       <a href="mailto:vibha0700@gmail.com?subject=Portfolio Contact">
+  <i className="ri-mail-line"></i>
+</a>
+      </div>
+
       <div className="menu-icon-wrapper" onClick={() => setMenuOpen(!menuOpen)}>
         <i className={`ri ${menuOpen ? "ri-close-line" : "ri-menu-line"}`} id="menu-icon"></i>
       </div>
+
     </header>
   );
 };

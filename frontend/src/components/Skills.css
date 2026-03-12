@@ -46,11 +46,11 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 130px));
-  justify-content: center;
-  gap: 2.4rem;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2rem;
   max-width: 900px;
   margin: 0 auto;
+  justify-items: center;
 }
 
 /* Skill Card */
@@ -67,7 +67,6 @@
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.15);
 
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
@@ -87,10 +86,9 @@
   font-size: 0.95rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
-  letter-spacing: 0.4px;
 }
 
-/* Hover Effects */
+/* Hover */
 .skill:hover {
   transform: translateY(-8px) scale(1.08);
   box-shadow:
@@ -103,18 +101,59 @@
   transform: scale(1.15);
 }
 
+/* ---------- RESPONSIVE ---------- */
+
+/* Laptop */
+@media (max-width:1100px){
+  .skills-wrapper{
+    grid-template-columns: repeat(4,1fr);
+  }
+}
+
+/* Tablet */
+@media (max-width:768px){
+  .skills-wrapper{
+    grid-template-columns: repeat(3,1fr);
+  }
+
+  #skills h2{
+    font-size:2.4rem;
+  }
+}
+
 /* Mobile */
-@media (max-width: 600px) {
-  #skills h2 {
-    font-size: 2.3rem;
+@media (max-width:480px){
+  .skills-wrapper{
+    grid-template-columns: repeat(2,1fr);  /* 2 per row */
+    gap:1.5rem;
   }
 
-  .skill {
-    width: 105px;
-    height: 105px;
+  .skill{
+    width:100px;
+    height:100px;
   }
 
-  .skill i {
-    font-size: 2.3rem;
+  .skill i{
+    font-size:2.2rem;
+  }
+
+  #skills h2{
+    font-size:2.1rem;
+  }
+}
+
+/* Small Phones */
+@media (max-width:360px){
+  .skill{
+    width:90px;
+    height:90px;
+  }
+
+  .skill i{
+    font-size:2rem;
+  }
+
+  .skill span{
+    font-size:0.8rem;
   }
 }
