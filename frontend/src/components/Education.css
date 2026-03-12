@@ -4,7 +4,7 @@
   overflow: hidden;
 }
 
-/* Background glow (same vibe as home) */
+/* Background glow */
 .education::before,
 .education::after {
   content: "";
@@ -139,41 +139,6 @@
   color: rgba(255, 255, 255, 0.78);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .section-title {
-    font-size: 2.4rem;
-    text-align: center;
-  }
-
-  .timeline-content {
-    padding: 20px;
-  }
-}
-/* Coding platform links */
-.coding-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.coding-links a {
-  padding: 6px 14px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 20px;
-  color: #ffffff;
-  text-decoration: none;
-  background: linear-gradient(135deg, #8f94fb, #ff9bd5);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.coding-links a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
-}
 /* Coding platform links */
 .coding-links {
   display: flex;
@@ -204,4 +169,85 @@
 .coding-links a:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+/* Tablets */
+@media (max-width: 900px) {
+
+  .section-title {
+    font-size: 2.4rem;
+    text-align: center;
+  }
+
+  .timeline {
+    padding-left: 24px;
+  }
+
+  .timeline-item {
+    padding-left: 32px;
+  }
+
+  .timeline-content {
+    padding: 20px;
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+  .education {
+    padding: 5rem 1.2rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .timeline {
+    padding-left: 18px;
+  }
+
+  .timeline-item {
+    padding-left: 26px;
+    margin-bottom: 2.5rem;
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  .timeline-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .timeline-content h4 {
+    font-size: 0.95rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.95rem;
+  }
+
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .timeline-content {
+    padding: 16px;
+  }
+
+  .coding-links a {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
 }
