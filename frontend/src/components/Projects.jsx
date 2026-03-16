@@ -4,15 +4,16 @@ import atten from "../assets/atten.png";
 import url from "../assets/url.png";
 import hill from "../assets/hill.png";
 import sanjeevini from "../assets/sanjeevini.png";
+import agni from "../assets/agni.png";
 
 const projects = [
-  // {
-  //   title: "Netflix UI Clone",
-  //   description: "A high-fidelity Netflix landing page featuring dynamic rows and a mobile-first responsive design.",
-  //   image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1000&auto=format&fit=crop", 
-  //   tech: ["React", "CSS"],
-  //   github: "https://github.com/yourusername/netflix-clone"
-  // },
+{
+  title: "Agni Pariksha",
+description: "Blockchain-based coding assessment platform that verifies skills using hidden test cases, automated evaluation, and tamper-proof results stored on Ethereum with MetaMask authentication.",
+  image: agni,
+tech: ["MERN Stack", "Ethereum", "MetaMask", "Judge0 API"],
+  github: "https://github.com/Vibhay007/AgniPariksha"
+},
   {
     title: "Project URL Shortener",
     description: "A full-stack tool that generates micro-links with click analytics and custom slugs.",
