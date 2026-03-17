@@ -1,0 +1,61 @@
+#scroll-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+
+  width: 55px;
+  height: 55px;
+
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.5rem;
+  color: #fff;
+
+  cursor: pointer;
+  z-index: 1000;
+
+  /* 🔥 Transparent glass look */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+
+  /* ✨ Glow effect */
+  box-shadow:
+    0 0 15px rgba(143, 148, 251, 0.6),
+    0 0 30px rgba(255, 155, 213, 0.4);
+
+  /* Hidden state */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.9);
+
+  transition: all 0.3s ease;
+}
+
+/* Visible */
+#scroll-top.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover */
+#scroll-top:hover {
+  transform: translateY(-6px) scale(1.1);
+
+  /* stronger glow */
+  box-shadow:
+    0 0 25px rgba(143, 148, 251, 0.9),
+    0 0 45px rgba(255, 155, 213, 0.7);
+
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Click */
+#scroll-top:active {
+  transform: scale(0.95);
+}

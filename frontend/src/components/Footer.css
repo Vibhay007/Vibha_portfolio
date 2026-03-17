@@ -1,7 +1,32 @@
 .footer {
   text-align: center;
-  padding: 2rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.85rem;
-  color: var(--muted);
+  padding: 2.5rem 1rem;
+  position: relative;
+}
+
+/* QUOTE */
+.footer-quote {
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  background: linear-gradient(135deg, #8f94fb, #ff9bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+/* Hover glow */
+.footer-quote:hover {
+  text-shadow: 0 0 18px rgba(255, 155, 213, 0.5);
+}
+
+/* COPYRIGHT */
+.footer-copy {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
 }

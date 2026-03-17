@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import "./App.css";
 
 import Loader from "./components/Loader";
 import Header from "./components/Header";
@@ -13,9 +14,11 @@ import Footer from "./components/Footer";
 import Background from "./components/Background";
 import Cursor from "./components/Cursor";
 
-
 const App = () => {
   const [loading, setLoading] = useState(true);
+
+  // ✅ NEW: scroll button state
+  const [showScroll, setShowScroll] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,6 +27,25 @@ const App = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // ✅ NEW: scroll detection (separate, doesn't touch your logic)
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScroll(true);
+      } else {
+        setShowScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // ✅ NEW: scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <AnimatePresence mode="wait">
@@ -34,8 +56,6 @@ const App = () => {
           <Cursor />
           <Background />
 
-       
-
           <Header />
           <Home />
           <About />
@@ -44,6 +64,16 @@ const App = () => {
           <Projects />
           <Contact />
           <Footer />
+
+
+          <button
+            id="scroll-top"
+            onClick={scrollToTop}
+            className={showScroll ? "active" : ""}
+            aria-label="Scroll to top"
+          >
+            ↑
+          </button>
         </div>
       )}
     </AnimatePresence>
