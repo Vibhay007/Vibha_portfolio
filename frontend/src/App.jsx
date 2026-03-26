@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import Background from "./components/Background";
 import Cursor from "./components/Cursor";
 
+
 const App = () => {
   const [loading, setLoading] = useState(true);
 
