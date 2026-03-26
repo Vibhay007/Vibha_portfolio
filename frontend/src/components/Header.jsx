@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Header.css";
+import { SiHashnode } from "react-icons/si";
 
 const menuItems = [
   { name: "Home", href: "#home" },
@@ -52,6 +53,9 @@ const Header = () => {
         <a href="#"><i className="ri-twitter-x-line"></i></a>
        <a href="mailto:vibha0700@gmail.com?subject=Portfolio Contact">
   <i className="ri-mail-line"></i>
+</a>
+<a href="https://hashnode.com/@vibha07" target="_blank">
+  <SiHashnode size={20} />
 </a>
       </div>
 
