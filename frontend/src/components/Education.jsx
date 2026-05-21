@@ -71,7 +71,7 @@ const Education = () => {
 
             <div className="coding-links">
               <a
-                href="https://www.geeksforgeeks.org/profile/vibha07"
+                href="https://www.geeksforgeeks.org/profile/vibhaa07"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -80,7 +80,7 @@ const Education = () => {
               </a>
 
               <a
-                href="https://leetcode.com/u/Vibha_07/"
+                href="https://leetcode.com/u/Vibhaa_07/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
