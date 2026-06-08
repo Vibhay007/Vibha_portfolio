@@ -1,82 +1,145 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght=300;400;600;700&display=swap');
 
+/* ===== HEADER ===== */
 .header {
-  /* Positioning & Shape */
   position: fixed;
   top: 0.5rem;
-
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
   max-width: 1100px;
   height: 70px;
   padding: 0 2rem;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   z-index: 1000;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  
-  /* Glassmorphism Effect */
-  background: rgba(15, 15, 15, 0.7);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Sora', sans-serif;
+
+  /* glass */
+  background: rgba(2, 12, 24, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(56,189,248,.15);
   border-radius: 100px;
-  
-  /* Shadow & Highlights */
-  box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.1), /* Top edge reflection */
-    0 15px 35px rgba(0, 0, 0, 0.4);
-    
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.4),
+    0 0 20px rgba(56,189,248,.08);
+
+  transition: transform 0.35s ease, opacity 0.35s ease, width 0.35s ease, padding 0.35s ease;
 }
 
-/* Scrolled State: More compact and solid */
+/* SCROLLED */
 .header.scrolled {
-  top: 0.8rem;
   width: 85%;
   height: 60px;
-  background: rgba(10, 10, 10, 0.9);
-  border-color: rgba(192, 132, 252, 0.3); /* Purple border on scroll */
+  background: rgba(2, 12, 24, 0.85);
+  border-color: rgba(56,189,248,.25);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.5),
+    0 0 25px rgba(14,165,233,.15);
 }
 
-/* Logo Styling */
+/* HIDE ON SCROLL */
+.header.hidden {
+  transform: translate(-50%, -120%);
+  opacity: 0;
+}
+
+/* ===== LOGO ===== */
 .logo {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.5px;
+  color: #e0f2fe;
   cursor: pointer;
+  white-space: nowrap; /* Prevents name from breaking into two lines */
 }
 
 .logo span {
-  color: #c084fc; /* Matching your purple */
-  text-shadow: 0 0 15px rgba(192, 132, 252, 0.4);
+  background: linear-gradient(135deg,#38bdf8,#0ea5e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Navigation Links */
+/* ===== NAVBAR ===== */
 .navbar {
   display: flex;
-  gap: 0.8rem;
+  gap: 0.5rem; /* Slightly reduced desktop gap to fit 'Coding Stats' line comfortably */
 }
 
+/* ===== MAGNETIC BUTTON BASE ===== */
 .nav-btn {
+  position: relative;
+  display: inline-block;
+
+  padding: 0.6rem 1rem; /* Streamlined for spacing layout adjustments */
+  border-radius: 999px;
+
   font-size: 0.9rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
+
+  color: rgba(186,230,253,.7);
   text-decoration: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 50px;
+  white-space: nowrap;
+
+  transition: transform 0.15s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
+  border: 1px solid transparent; /* Set baseline to prevent jumpy layout shifts on hover */
+}
+
+/* hover glow pill */
+.nav-btn:hover {
+  color: #e0f2fe;
+  background: rgba(56,189,248,.08);
+  border: 1px solid rgba(56,189,248,.2);
+}
+
+/* ACTIVE */
+.nav-btn.active {
+  color: #e0f2fe;
+  background: rgba(56,189,248,.1);
+  border: 1px solid rgba(56,189,248,.25);
+}
+
+/* ===== MAGNETIC EFFECT (CSS BASE) ===== */
+.nav-btn {
+  transform: translate(var(--x, 0px), var(--y, 0px));
+}
+
+/* ===== SOCIAL ICONS ===== */
+.social-icons {
+  display: flex;
+  gap: 8px; /* Compact desktop spacing to accommodate standard layouts */
+  align-items: center;
+}
+
+.social-icons a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #7dd3fc;
+  text-decoration: none;
+
   transition: all 0.3s ease;
 }
 
-.nav-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
+.social-icons a:hover {
+  background: rgba(56,189,248,.08);
+  color: #38bdf8;
+  transform: translateY(-2px) scale(1.1);
 }
 
-/* Mobile Icon Wrapper */
+/* ===== MOBILE ===== */
 .menu-icon-wrapper {
   display: none;
   cursor: pointer;
@@ -84,40 +147,67 @@
 
 #menu-icon {
   font-size: 1.7rem;
-  color: #fff;
-  transition: 0.3s;
+  color: #7dd3fc;
 }
 
-/* --- Responsive (Mobile) --- */
-@media (max-width: 768px) {
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+
+/* 1. Intermediate Breakpoint: Prevents Social Icons and Menu items from colliding */
+@media (max-width: 1024px) {
   .header {
+    width: 95%;
+    padding: 0 1.2rem;
+  }
+  .header.scrolled {
     width: 92%;
-    padding: 0 1.5rem;
+  }
+  .social-icons {
+    gap: 4px; /* Dynamically re-adjust margins on middle-tier tablets */
+  }
+}
+
+/* 2. Tablet and Mobile Breakpoint */
+@media (max-width: 868px) {
+  .menu-icon-wrapper { 
+    display: block; 
+    order: 3;
   }
 
-  .menu-icon-wrapper {
-    display: block;
+  .social-icons {
+    margin-left: auto;
+    margin-right: 1.5rem;
+    order: 2;
   }
 
   .navbar {
     position: absolute;
     top: 80px;
     right: 0;
-    width: 240px;
+
+    width: 260px;
     flex-direction: column;
-    padding: 1.5rem;
-    gap: 1rem;
-    background: rgba(15, 15, 15, 0.98);
+
+    padding: 1.25rem;
+    gap: 0.5rem;
+
+    background: rgba(2, 12, 24, 0.96);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 20px;
+
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    
-    /* Animation Logic */
+    -webkit-backdrop-filter: blur(20px);
+
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-20px) scale(0.95);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(-15px) scale(0.95);
+
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Shrink drop down positioning slightly when header is scrolled down */
+  .header.scrolled .navbar {
+    top: 68px;
   }
 
   .navbar.active {
@@ -128,44 +218,35 @@
 
   .nav-btn {
     width: 100%;
-    text-align: center;
-    font-size: 1.1rem;
+    text-align: left;
+    padding: 0.75rem 1.2rem;
+    transform: none !important; /* Disable magnetic shifting on mobile layouts */
   }
 }
-/* Social Icons */
 
-/* Social Icons */
-
-.social-icons {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-}
-
-/* remove underline */
-.social-icons a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-/* hover effect */
-.social-icons a:hover {
-  color: #c084fc;
-  background: rgba(255, 255, 255, 0.08);
-  transform: scale(1.15);
-}
-
-/* hide icons on mobile */
-@media (max-width:768px){
-  .social-icons{
-    display:none;
+/* 3. Extra Small Viewports (Ultra Mobile) */
+@media (max-width: 480px) {
+  .header {
+    width: 95%;
+    padding: 0 1rem;
+    height: 60px;
+  }
+  .header.scrolled {
+    height: 56px;
+  }
+  .logo {
+    font-size: 1.1rem;
+  }
+  /* Hide minor secondary handles to preserve visual canvas space on small screens */
+  .social-icons a:nth-child(3),
+  .social-icons a:nth-child(4) {
+    display: none;
+  }
+  .social-icons {
+    margin-right: 0.8rem;
+  }
+  .navbar {
+    width: calc(100vw - 2rem);
+    right: 0;
   }
 }

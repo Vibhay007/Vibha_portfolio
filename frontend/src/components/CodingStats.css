@@ -1,87 +1,10 @@
-/* ==========================================================================
-   UPDATED BACKGROUND CONTAINER (Matches Coding Stats Palette)
-   ========================================================================== */
-.bg-container {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; 
-  overflow: hidden;
-  pointer-events: none;
-  /* CHANGED: Swapped deep violet for the rich, high-tech deep slate #020c18 from your coding stats */
-  background: radial-gradient(circle at center, #020c18 0%, #01060d 60%, #000000 100%);
-}
-
-/* Ensure all layers cover full screen */
-.star-layer,
-.nebula-glow {
-  position: absolute;
-  inset: 0;
-}
-
-/* ---------------- STAR LAYERS ---------------- */
-.star-layer {
-  background-repeat: repeat; 
-}
-
-.layer-1 {
-  background-image: radial-gradient(1px 1px at 10px 10px, rgba(255,255,255,0.4), transparent);
-  background-size: 50px 50px;
-  animation: moveStars 150s linear infinite;
-}
-
-.layer-2 {
-  background-image: radial-gradient(1.5px 1.5px at 25px 25px, rgba(255,255,255,0.5), transparent);
-  background-size: 120px 120px;
-  animation: moveStars 100s linear infinite reverse;
-}
-
-.layer-3 {
-  /* CHANGED: Tinted the stars slightly blue-cyan to match the dashboard's accents */
-  background-image: radial-gradient(2px 2px at 60px 60px, rgba(56, 189, 248, 0.4), transparent);
-  background-size: 200px 200px;
-  animation: moveStars 80s linear infinite;
-}
-
-.layer-4 {
-  background-image: radial-gradient(2.5px 2.5px at 100px 100px, rgba(255,255,255,0.8), transparent);
-  background-size: 300px 300px;
-  opacity: 0.3;
-  animation: twinkle 3s ease-in-out infinite alternate;
-}
-
-/* ---------------- NEBULA ---------------- */
-.nebula-glow {
-  background:
-    /* CHANGED: Shifted nebula glows to matching cyan/deep sky blue values */
-    radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.1), transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.08), transparent 50__);
-  filter: blur(60px);
-}
-
-/* ---------------- ANIMATIONS ---------------- */
-@keyframes moveStars {
-  from { transform: translate(0,0); }
-  to { transform: translate(-500px,-500px); }
-}
-
-@keyframes twinkle {
-  from { opacity: 0.2; }
-  to { opacity: 0.6; }
-}
-
-
-/* ==========================================================================
-   UPDATED CODING STATS SECTION (Integrated Cleanly)
-   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap');
 
+/* ===== SECTION ===== */
 .coding-stats {
   position: relative;
   padding: 100px 0;
-  /* CHANGED: Made transparent so the new .bg-container glows and stars scroll beneath it */
-  background: transparent; 
+  background: #020c18;
   overflow: hidden;
   font-family: 'Sora', sans-serif;
 }
@@ -95,7 +18,13 @@
   pointer-events: none;
 }
 
-.cs-container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.cs-container { 
+  width: 100%;
+  max-width: 1100px; 
+  margin: 0 auto; 
+  padding: 0 24px; 
+  box-sizing: border-box;
+}
 
 /* ── Heading ── */
 .cs-tag {
@@ -109,7 +38,7 @@
 .cs-tag-close { margin-top: 48px; }
 .cs-heading { text-align: center; margin-bottom: 56px; }
 .cs-title {
-  font-size: clamp(2rem,5vw,3rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   margin: 0 0 12px;
   background: linear-gradient(135deg,#e0f2fe 0%,#38bdf8 50%,#0ea5e9 100%);
@@ -120,8 +49,11 @@
 .cs-subtitle { font-size: .95rem; color: rgba(186,230,253,.45); font-weight: 300; margin: 0; }
 
 /* ── Grid ── */
-.cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-@media (max-width: 768px) { .cs-grid { grid-template-columns: 1fr; } }
+.cs-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 28px; 
+}
 
 /* ── Cards ── */
 .cs-card {
@@ -134,6 +66,9 @@
   transition: transform .3s ease, border-color .3s, box-shadow .3s;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .cs-card::before {
   content: '';
@@ -150,7 +85,12 @@
 }
 
 /* ── Card header ── */
-.cs-card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.cs-card-header { 
+  display: flex; 
+  align-items: center; 
+  gap: 14px; 
+  margin-bottom: 24px; 
+}
 .cs-platform-icon {
   width: 48px; height: 48px; border-radius: 12px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
@@ -158,20 +98,29 @@
 .lc-icon { background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.2); }
 .cf-icon { background: rgba(14,165,233,.1); border: 1px solid rgba(14,165,233,.2); }
 .cs-platform-icon svg { width: 28px; height: 28px; }
-.cf-avatar { width: 100%; height: 100%; border-radius: 12px; object-fit: cover; }
 .cs-platform-name { font-size: 1.1rem; font-weight: 700; color: #e0f2fe; margin: 0 0 2px; }
 .cs-platform-handle { font-size: .75rem; color: rgba(56,189,248,.5); font-family: 'Space Mono',monospace; }
+
 .cs-rating-badge {
   margin-left: auto; text-align: center;
   padding: 10px 16px; border-radius: 12px;
   display: flex; flex-direction: column; gap: 3px;
+  align-items: center;
+  justify-content: center;
 }
 .lc-badge { background: rgba(251,146,60,.1); border: 1px solid rgba(251,146,60,.3); }
 .cf-badge { background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.3); }
-.cs-rating-badge span:first-child {
-  font-family: 'Space Mono',monospace; font-size: 1.3rem; font-weight: 700; color: #fb923c;
+
+/* Class wrapper container to assist text rendering alignment inside counters */
+.cs-rating-num-wrapper {
+  font-family: 'Space Mono',monospace; 
+  font-size: 1.15rem; 
+  font-weight: 700; 
+  color: #fb923c;
+  white-space: nowrap;
 }
-.cf-badge span:first-child { color: #38bdf8; }
+.cf-badge .cs-rating-num-wrapper { color: #38bdf8; }
+
 .cs-rating-badge span:last-child {
   font-size: .65rem; color: rgba(186,230,253,.5); letter-spacing: .08em; text-transform: uppercase;
 }
@@ -179,10 +128,24 @@
 /* ── Error ── */
 .cs-error { color: #f87171; font-size: .8rem; margin-bottom: 12px; }
 
-/* ── Donut ── */
-.cs-solved-section { display: flex; align-items: center; gap: 24px; margin-bottom: 22px; }
-.cs-donut-wrap { flex-shrink: 0; }
-.cs-donut { width: 120px; height: 120px; transform: rotate(-90deg); }
+/* ── Donut Chart and Problem Breakthrough Row ── */
+.cs-solved-section { 
+  display: flex; 
+  align-items: center; 
+  gap: 32px; 
+  margin-bottom: 22px; 
+}
+.cs-donut-wrap { 
+  flex-shrink: 0; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-donut { 
+  width: 120px; 
+  height: 120px; 
+  transform: rotate(-90deg); 
+}
 .donut-bg { fill: none; stroke: rgba(56,189,248,.08); stroke-width: 10; }
 .donut-easy,.donut-medium,.donut-hard { fill: none; stroke-width: 10; stroke-linecap: butt; transition: stroke-dasharray 1.2s ease; }
 .donut-easy   { stroke: #4ade80; }
@@ -199,66 +162,104 @@
 }
 
 /* ── Breakdown ── */
-.cs-breakdown { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.cs-breakdown { display: flex; flex-direction: column; gap: 12px; flex: 1; }
 .cs-diff { display: flex; align-items: center; gap: 10px; }
 .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .easy .dot   { background: #4ade80; box-shadow: 0 0 6px #4ade80; }
 .medium .dot { background: #fbbf24; box-shadow: 0 0 6px #fbbf24; }
 .hard .dot   { background: #f87171; box-shadow: 0 0 6px #f87171; }
-.diff-label { font-size: .8rem; color: rgba(186,230,253,.6); flex: 1; }
+.diff-label { font-size: .85rem; color: rgba(186,230,253,.6); flex: 1; }
 .diff-val { font-family: 'Space Mono',monospace; font-size: .95rem; font-weight: 700; color: #e0f2fe; }
 
 /* ── Badges ── */
 .cs-section-label {
   font-size: .68rem; text-transform: uppercase; letter-spacing: .12em;
-  color: rgba(56,189,248,.5); margin: 0 0 10px;
+  color: rgba(56,189,248,.5); margin: 0 0 12px;
   font-family: 'Space Mono',monospace;
 }
-.cs-badges-section { margin-bottom: 18px; }
-.cs-badges { display: flex; flex-wrap: wrap; gap: 8px; }
-.cs-badge {
-  background: rgba(56,189,248,.07); border: 1px solid rgba(56,189,248,.2);
-  color: #7dd3fc; font-size: .72rem; padding: 5px 12px; border-radius: 20px;
-  transition: background .2s, border-color .2s;
+.lc-badges-section { margin: 24px 0 20px 0; }
+.lc-badges-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
-.cs-badge:hover { background: rgba(56,189,248,.15); border-color: rgba(56,189,248,.4); }
+.lc-badge-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 14px;
+  border-radius: 30px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+}
+.lc-badge-pill:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: #fb923c; 
+  transform: translateY(-2px);
+}
+.badge-img-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+}
+.badge-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
+}
+.badge-name {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #cbd5e1;
+}
 
 /* ── Meta pills ── */
-.cs-meta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
-.cs-meta-pill {
-  flex: 1; min-width: 90px;
-  background: rgba(56,189,248,.05); border: 1px solid rgba(56,189,248,.1);
-  border-radius: 10px; padding: 10px 12px;
-  display: flex; flex-direction: column; gap: 3px;
+.cs-meta-row { 
+  display: flex; 
+  gap: 12px; 
+  width: 100%;
+  margin-top: auto; 
 }
-.cs-meta-pill span { font-size: .65rem; color: rgba(186,230,253,.45); }
+.cs-meta-pill {
+  flex: 1; 
+  min-width: 0; /* Prevents overflow inside flex box wrappers */
+  background: rgba(56,189,248,.05); 
+  border: 1px solid rgba(56,189,248,.1);
+  border-radius: 12px; 
+  padding: 12px;
+  display: flex; 
+  flex-direction: column; 
+  gap: 4px;
+}
+.cs-meta-pill span { font-size: .65rem; color: rgba(186,230,253,.45); white-space: nowrap; }
 .cs-meta-pill strong { font-family: 'Space Mono',monospace; font-size: .95rem; color: #38bdf8; }
 
-/* ── Sub row ── */
-.cs-sub-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 16px;
-  background: rgba(56,189,248,.05); border: 1px solid rgba(56,189,248,.1);
-  border-radius: 10px; margin-top: 14px;
-}
-.cs-sub-row .cs-section-label { margin: 0; }
-.cs-sub-val { font-family: 'Space Mono',monospace; font-size: 1.1rem; font-weight: 700; color: #38bdf8; }
-
 /* ── CF stats grid ── */
-.cf-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px; }
+.cf-stats-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 12px; 
+  margin-bottom: 24px; 
+}
 .cf-stat-box {
   background: rgba(56,189,248,.04); border: 1px solid rgba(56,189,248,.1);
-  border-radius: 12px; padding: 14px;
-  display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;
+  border-radius: 12px; padding: 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
   transition: border-color .2s, background .2s;
 }
 .cf-stat-box:hover { border-color: rgba(56,189,248,.28); background: rgba(56,189,248,.08); }
 .cf-stat-icon { font-size: 1.2rem; }
-.cf-stat-num { font-family: 'Space Mono',monospace; font-size: 1.4rem; font-weight: 700; color: #38bdf8; line-height: 1; }
+.cf-stat-num { font-family: 'Space Mono',monospace; font-size: 1.35rem; font-weight: 700; color: #38bdf8; line-height: 1; }
 .cf-stat-label { font-size: .62rem; color: rgba(186,230,253,.4); letter-spacing: .05em; text-transform: uppercase; }
 
 /* ── Rating bar ── */
-.cf-rating-bar-wrap { margin-bottom: 4px; }
+.cf-rating-bar-wrap { margin-top: auto; }
 .cf-bar-track {
   background: rgba(56,189,248,.07); border: 1px solid rgba(56,189,248,.1);
   border-radius: 999px; height: 10px; overflow: hidden; position: relative;
@@ -272,7 +273,7 @@
 .cf-bar-labels {
   display: flex; justify-content: space-between;
   font-size: .58rem; color: rgba(56,189,248,.35);
-  font-family: 'Space Mono',monospace; margin-top: 4px;
+  font-family: 'Space Mono',monospace; margin-top: 6px;
 }
 
 /* ── Skeleton ── */
@@ -283,3 +284,85 @@
   animation: shimmer 1.4s infinite;
 }
 @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+
+/* ==========================================
+   ── RESPONSIVE MEDIA QUERIES ──
+   ========================================== */
+
+/* 1. Medium Tablets (iPad/Notebook layout adjustments) */
+@media (max-width: 992px) {
+  .cs-container { padding: 0 20px; }
+  .cs-card { padding: 22px; }
+  .cs-solved-section { gap: 20px; }
+  .cs-donut { width: 110px; height: 110px; }
+}
+
+/* 2. Small Tablets & Phones (Stack cards into single column layout) */
+@media (max-width: 768px) {
+  .coding-stats { padding: 60px 0; }
+  .cs-heading { margin-bottom: 40px; }
+  .cs-grid { 
+    grid-template-columns: 1fr; /* Force cards to stack on top of each other */
+    gap: 24px; 
+  }
+  .cs-card { padding: 24px; }
+}
+
+/* 3. Small Mobile Phones (iPhone/Android Layout Protection) */
+@media (max-width: 480px) {
+  .cs-container { padding: 0 16px; }
+  
+  .cs-card-header {
+    flex-wrap: wrap; /* Wraps the badge rank container nicely on tight screens */
+    gap: 12px;
+  }
+  
+  .cs-rating-badge {
+    margin-left: 0;
+    width: 100%; /* Spans badge out fully across mobile row for cleaner visual symmetry */
+    padding: 8px 12px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .cs-rating-badge span:last-child {
+    margin-top: 0;
+  }
+
+  /* Split the Donut and Numbers row into a stacked system to prevent horizontal screen overflow */
+  .cs-solved-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .cs-breakdown {
+    width: 100%;
+  }
+
+  .cs-diff {
+    justify-content: space-between;
+  }
+
+  .lc-badges-container {
+    justify-content: center; /* Centers badges nicely on narrow devices */
+  }
+
+  .lc-badge-pill {
+    width: 100%; /* Makes pills stretch out dynamically */
+    justify-content: center;
+  }
+
+  .cs-meta-row {
+    flex-direction: column; /* Stacks Max Streak on top of Active days instead of squeezing them side-by-side */
+    gap: 10px;
+  }
+
+  .cs-meta-pill {
+    width: 100%;
+    align-items: center;
+  }
+}

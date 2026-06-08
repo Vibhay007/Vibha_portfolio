@@ -1,3 +1,51 @@
+/* ==========================================================================
+   1. GLOBAL & LAYOUT STYLES
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000; /* Fallback color */
+  overflow-x: hidden;
+}
+
+/* Main app wrapper holding everything together */
+.app-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  color: #ffffff; /* Ensures text is naturally visible over dark theme */
+}
+
+
+/* ==========================================================================
+   2. TRANSPARENCY FIXES (Ensures background isn't blocked)
+   ========================================================================== */
+header, 
+footer, 
+section, 
+main,
+div:not(.bg-container):not(.star-layer):not(.nebula-glow) {
+  background-color: transparent !important;
+}
+
+
+/* ==========================================================================
+   3. SCROLL TO TOP BUTTON (THEME MATCHED & OPTIMIZED)
+   ========================================================================== */
 #scroll-top {
   position: fixed;
   bottom: 25px;
@@ -7,55 +55,66 @@
   height: 55px;
 
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.2);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 1.5rem;
-  color: #fff;
+  font-size: 1.4rem;
+  color: #7dd3fc;
 
   cursor: pointer;
   z-index: 1000;
 
-  /* 🔥 Transparent glass look */
-  background: rgba(255, 255, 255, 0.08);
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Apple/Safari support */
 
-  /* ✨ Glow effect */
+  /* Cyan glow */
   box-shadow:
-    0 0 15px rgba(143, 148, 251, 0.6),
-    0 0 30px rgba(255, 155, 213, 0.4);
+    0 0 15px rgba(56, 189, 248, 0.25),
+    0 0 30px rgba(14, 165, 233, 0.15);
 
-  /* Hidden state */
+  /* Hidden base state */
   opacity: 0;
   pointer-events: none;
-  transform: translateY(20px) scale(0.9);
+  
+  /* Separated modern properties to prevent animation stuttering */
+  translate: 0 20px;
+  scale: 0.9;
 
-  transition: all 0.3s ease;
+  transition: 
+    opacity 0.3s ease, 
+    translate 0.3s ease, 
+    scale 0.3s ease, 
+    border-color 0.3s ease, 
+    box-shadow 0.3s ease;
 }
 
-/* Visible */
+/* Visible active state (triggered via React scroll listener) */
 #scroll-top.active {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0) scale(1);
+  translate: 0 0;
+  scale: 1;
 }
 
-/* Hover */
-#scroll-top:hover {
-  transform: translateY(-6px) scale(1.1);
+/* Hover state (Only triggers while the button is visible) */
+#scroll-top.active:hover {
+  translate: 0 -6px;
+  scale: 1.1;
 
-  /* stronger glow */
+  border-color: rgba(56, 189, 248, 0.4);
+
   box-shadow:
-    0 0 25px rgba(143, 148, 251, 0.9),
-    0 0 45px rgba(255, 155, 213, 0.7);
-
-  border-color: rgba(255, 255, 255, 0.4);
+    0 0 25px rgba(56, 189, 248, 0.4),
+    0 0 50px rgba(14, 165, 233, 0.25);
 }
 
-/* Click */
-#scroll-top:active {
-  transform: scale(0.95);
+/* Click/Active state for tactile feedback */
+#scroll-top.active:active {
+  scale: 0.95;
+  translate: 0 0;
 }

@@ -1,71 +1,117 @@
+/* ==========================================================================
+   CUSTOM CURSOR (THEME MATCHED - DEEP SLATE & CYAN)
+   ========================================================================== */
+
 /* Global Reset */
 html, body {
   cursor: none;
 }
 
-/* Force hide on interactive elements */
-a, button, .nav-btn, .project-card, .github-btn, input, textarea {
+/* Force hide standard cursor on all interactive elements */
+a, 
+button, 
+.nav-btn, 
+.project-card, 
+.github-btn, 
+input, 
+textarea,
+[role="button"] {
   cursor: none !important;
 }
 
+/* ── Inner Core Dot ── */
 .cursor-dot {
   width: 8px;
   height: 8px;
-  background-color: #c084fc;
-  box-shadow: 0 0 15px #c084fc;
+  /* CHANGED: Swapped purple for neon sky blue to match your dashboard metrics */
+  background-color: #38bdf8;
+  box-shadow: 0 0 15px #38bdf8;
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 10000;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  
+  /* Use transform ONLY for centering, keep positions controlled via JS top/left */
+  transform: translate(-50%, -50%); 
+  
+  /* Modern standalone property for click effects */
+  scale: 1; 
+  
+  transition: 
+    width 0.2s ease, 
+    height 0.2s ease, 
+    background-color 0.2s ease, 
+    box-shadow 0.2s ease,
+    scale 0.15s ease;
 }
 
+/* ── Outer Trailing Outline ── */
 .cursor-outline {
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(192, 132, 252, 0.4);
+  /* CHANGED: Outlined with a subtle sky blue/cyan border */
+  border: 1px solid rgba(56, 189, 248, 0.3);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
+  
   transform: translate(-50%, -50%);
-  transition: transform 0.1s ease-out, width 0.3s, height 0.3s, border 0.3s, background-color 0.3s;
-  background-color: rgba(192, 132, 252, 0.02);
+  scale: 1;
+  
+  /* CHANGED: Tinted background glow to match cyan aura */
+  background-color: rgba(56, 189, 248, 0.02);
   backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px); /* Safari support */
+  
+  /* Transition transform handles the smooth mouse trail delay */
+  transition: 
+    transform 0.1s ease-out, 
+    width 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+    height 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+    border-color 0.3s ease, 
+    background-color 0.3s ease,
+    scale 0.2s ease-out;
 }
 
-/* Hovering State */
+/* ── Hovering State (.pointer) ── */
 .cursor-dot.pointer {
   width: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 20px #fff;
+  height: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 0 20px #ffffff;
 }
 
 .cursor-outline.pointer {
   width: 60px;
   height: 60px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.8);
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Click Animation Pulse */
+/* ── Click Animation Pulse (.clicking) ── */
 .cursor-dot.clicking {
-  transform: translate(-50%, -50%) scale(0.5);
+  scale: 0.5;
 }
 
 .cursor-outline.clicking {
-  transform: translate(-50%, -50%) scale(1.5);
-  background-color: rgba(192, 132, 252, 0.2);
-  border-color: #c084fc;
+  scale: 1.5;
+  /* CHANGED: Upgraded click pulse to a bright cyan glass effect with a vivid neon edge */
+  background-color: rgba(56, 189, 248, 0.15);
+  border-color: #38bdf8;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
 }
 
-/* Hide on mobile/touch */
+/* ── Responsive Mobile Safety ── */
 @media (max-width: 768px) {
-  .cursor-dot, .cursor-outline {
-    display: none;
+  .cursor-dot, 
+  .cursor-outline {
+    display: none !important;
   }
   html, body {
-    cursor: auto;
+    cursor: auto !important;
+  }
+  a, button, .nav-btn, .project-card, .github-btn, input, textarea {
+    cursor: auto !important;
   }
 }

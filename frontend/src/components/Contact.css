@@ -1,144 +1,161 @@
 .contact {
   position: relative;
   padding: 6rem 1.5rem;
-  background: radial-gradient(
-      circle at top left,
-      rgba(120, 130, 255, 0.18),
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      rgba(255, 120, 200, 0.12),
-      transparent 40%
-    );
+
+  background: #020c18;
   overflow: hidden;
+
+  font-family: 'Sora', sans-serif;
+  color: #e0f2fe;
 }
 
-/* Floating glow orbs */
+/* glowing background */
 .contact::before,
 .contact::after {
   content: "";
   position: absolute;
-  width: 320px;
-  height: 320px;
-  background: linear-gradient(135deg, #8f94fb, #4e54c8);
-  filter: blur(120px);
-  opacity: 0.35;
+  width: 420px;
+  height: 420px;
+  filter: blur(160px);
+  opacity: 0.25;
   z-index: 0;
 }
 
 .contact::before {
-  top: -120px;
-  left: -120px;
+  top: -160px;
+  left: -160px;
+  background: radial-gradient(circle, rgba(56,189,248,.25), transparent 60%);
 }
 
 .contact::after {
-  bottom: -120px;
-  right: -120px;
+  bottom: -160px;
+  right: -160px;
+  background: radial-gradient(circle, rgba(14,165,233,.2), transparent 60%);
 }
 
-/* Heading */
+/* heading */
 .contact h2 {
   position: relative;
   z-index: 1;
   text-align: center;
+
   font-size: 2.8rem;
   margin-bottom: 4rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #8f94fb, #ff9bd5);
+
+  background: linear-gradient(135deg,#e0f2fe,#38bdf8,#0ea5e9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: 1.2px;
 }
 
-/* Glass Card */
+/* form glass card */
 .contact form {
   position: relative;
   z-index: 1;
+
   max-width: 520px;
   margin: auto;
   padding: 3rem;
+
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.08);
+
+  background: rgba(255,255,255,0.03);
   backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+
+  border: 1px solid rgba(56,189,248,.12);
+
+  box-shadow: 0 25px 70px rgba(0,0,0,.45);
 }
 
-/* Inputs */
+/* inputs */
 .contact input,
 .contact textarea {
   width: 100%;
   padding: 1.1rem 1.2rem;
   margin-bottom: 1.6rem;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(56,189,248,.15);
   border-radius: 14px;
-  color: var(--text);
+
+  color: #e0f2fe;
   font-size: 1rem;
+
   outline: none;
-  transition: all 0.35s ease;
+  transition: all 0.3s ease;
 }
 
-/* Placeholder */
+/* placeholder */
 .contact input::placeholder,
 .contact textarea::placeholder {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(186,230,253,.5);
 }
 
-/* Neon Focus */
+/* focus */
 .contact input:focus,
 .contact textarea:focus {
-  border-color: #8f94fb;
-  box-shadow: 0 0 0 3px rgba(143, 148, 251, 0.45),
-    0 0 25px rgba(143, 148, 251, 0.35);
-  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(56,189,248,.5);
+
+  box-shadow:
+    0 0 0 3px rgba(56,189,248,.15),
+    0 0 25px rgba(14,165,233,.15);
+
+  background: rgba(56,189,248,.05);
 }
 
-/* Button */
+/* button */
 .contact .btn {
   width: 100%;
   padding: 1.1rem;
+
   border-radius: 16px;
-  border: none;
-  background: linear-gradient(135deg, #8f94fb, #ff9bd5);
-  color: #fff;
-  font-size: 1.1rem;
+  border: 1px solid rgba(56,189,248,.25);
+
+  background: rgba(56,189,248,.08);
+  color: #e0f2fe;
+
+  font-size: 1.05rem;
   font-weight: 600;
+
   cursor: pointer;
-  letter-spacing: 0.6px;
-  transition: all 0.35s ease;
+  transition: all 0.3s ease;
 }
 
-/* Button Hover */
+/* button hover */
 .contact .btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 45px rgba(143, 148, 251, 0.55);
+  transform: translateY(-3px);
+
+  background: rgba(56,189,248,.15);
+  border-color: rgba(56,189,248,.4);
+
+  box-shadow: 0 0 25px rgba(14,165,233,.2);
 }
 
-/* Button Active */
+/* button active */
 .contact .btn:active {
   transform: translateY(0);
 }
 
-/* Mobile */
-@media (max-width: 480px) {
-  .contact h2 {
-    font-size: 2.3rem;
-  }
-
-  .contact form {
-    padding: 2.2rem;
-  }
+/* disabled */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
+
+/* status */
 .status-message {
   margin-top: 10px;
   font-size: 14px;
-  color: green;
+  color: #38bdf8;
 }
 
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+/* mobile */
+@media (max-width: 480px) {
+  .contact h2 {
+    font-size: 2.2rem;
+  }
+
+  .contact form {
+    padding: 2rem;
+  }
 }
