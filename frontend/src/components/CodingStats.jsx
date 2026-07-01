@@ -76,35 +76,78 @@ function LeetCodeCard() {
   useEffect(() => {
     // Primary stable mirror endpoint requiring NO proxy middleware
     const targetUrl = `https://leetcode-api-faisalshohag.vercel.app/Vibha_07`;
+    // Badges and contest rating aren't in the endpoint above, so fetch them separately
+    const badgesUrl = `https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/badges`;
+    const contestUrl = `https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/contest`;
 
-    fetch(targetUrl)
-      .then((res) => {
+    // Derive active days + max streak from the real submissionCalendar
+    const computeCalendarStats = (submissionCalendar = {}) => {
+      const dayTimestamps = Object.keys(submissionCalendar)
+        .map((ts) => Number(ts))
+        .sort((a, b) => a - b);
+
+      const activeDays = dayTimestamps.length;
+      const SECONDS_IN_DAY = 86400;
+
+      let maxStreak = 0;
+      let currentStreak = 0;
+      let prevDay = null;
+
+      dayTimestamps.forEach((ts) => {
+        if (prevDay !== null && ts - prevDay === SECONDS_IN_DAY) {
+          currentStreak += 1;
+        } else {
+          currentStreak = 1;
+        }
+        maxStreak = Math.max(maxStreak, currentStreak);
+        prevDay = ts;
+      });
+
+      return { activeDays, streak: maxStreak };
+    };
+
+    Promise.all([
+      fetch(targetUrl).then((res) => {
         if (!res.ok) throw new Error("Primary API stream offline");
         return res.json();
-      })
-      .then((statsData) => {
-        // Map data safely from the standard API schema
+      }),
+      fetch(badgesUrl)
+        .then((res) => (res.ok ? res.json() : Promise.reject(new Error("Badges API offline"))))
+        .catch(() => null), // badges are non-critical, don't block main stats on failure
+      fetch(contestUrl)
+        .then((res) => (res.ok ? res.json() : Promise.reject(new Error("Contest API offline"))))
+        .catch(() => null), // contest rating is non-critical, don't block main stats on failure
+    ])
+      .then(([statsData, badgesData, contestData]) => {
+        const { activeDays, streak } = computeCalendarStats(statsData.submissionCalendar);
+
+        const badges = badgesData?.badges?.length
+          ? badgesData.badges.map((b) => ({
+              name: b.displayName || b.name,
+              icon: b.icon?.startsWith("http") ? b.icon : `https://leetcode.com${b.icon}`,
+            }))
+          : [
+              { name: "100 Days Badge 2026", icon: "https://assets.leetcode.com/static_assets/marketing/2026-100-badge.png" },
+              { name: "50 Days Badge 2026", icon: "https://assets.leetcode.com/static_assets/marketing/2026-50-badge.png" }
+            ];
+
+        const contestRating = contestData?.contestRating
+          ? Math.round(contestData.contestRating)
+          : null;
+
         setData({
           username: LEETCODE_USERNAME,
-          contestRating: statsData.ranking || 389916,
+          contestRating: contestRating ?? statsData.ranking ?? 389916,
+          isContestRating: contestRating !== null, // lets the UI know whether this is a true contest rating or the ranking fallback
           solved: {
             easy: statsData.easySolved || 171,
             medium: statsData.mediumSolved || 141,
             hard: statsData.hardSolved || 25,
           },
-          streak: 35,       
-          activeDays: 158,  
-          badgesCount: 2,
-          badges: [
-            { 
-              name: "100 Days Badge 2026", 
-              icon: "https://assets.leetcode.com/static_assets/marketing/2026-100-badge.png" 
-            },
-            { 
-              name: "50 Days Badge 2026", 
-              icon: "https://assets.leetcode.com/static_assets/marketing/2026-50-badge.png" 
-            }
-          ]
+          streak: streak || 35,
+          activeDays: activeDays || 158,
+          badgesCount: badgesData?.badgesCount ?? badges.length,
+          badges,
         });
       })
       .catch((err) => {
@@ -113,6 +156,7 @@ function LeetCodeCard() {
         setData({
           username: LEETCODE_USERNAME,
           contestRating: 389916, 
+          isContestRating: false,
           solved: { easy: 171, medium: 141, hard: 25 },
           streak: 35,       
           activeDays: 158,
@@ -128,13 +172,19 @@ function LeetCodeCard() {
   return (
     <div className="cs-card lc-card">
       <div className="cs-card-header">
-        <div className="cs-platform-icon lc-icon">
+        <a
+          href={`https://leetcode.com/${LEETCODE_USERNAME}/`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cs-platform-icon lc-icon"
+          aria-label="View LeetCode profile"
+        >
           <svg viewBox="0 0 50 50" fill="none">
             <path d="M30.67 34.45 L20.5 44.61 C19.43 45.68 17.71 45.68 16.64 44.61 L5.39 33.36 C4.32 32.29 4.32 30.57 5.39 29.5 L24.61 10.28 C25.68 9.21 27.4 9.21 28.47 10.28 L30.67 12.48"
               stroke="#38bdf8" strokeWidth="3" strokeLinecap="round" />
             <path d="M23 34h22" stroke="#fb923c" strokeWidth="3" strokeLinecap="round" />
           </svg>
-        </div>
+        </a>
         <div>
           <h3 className="cs-platform-name">LeetCode</h3>
           <span className="cs-platform-handle">
@@ -143,7 +193,7 @@ function LeetCodeCard() {
         </div>
         <div className="cs-rating-badge lc-badge">
           {data
-            ? <><div className="cs-rating-num-wrapper">Rank <AnimatedNumber value={data.contestRating} /></div></>
+            ? <><div className="cs-rating-num-wrapper">{data.isContestRating ? "Rating" : "Rank"} <AnimatedNumber value={data.contestRating} /></div></>
             : <><Skeleton w="50px" h="22px" /><Skeleton w="40px" h="10px" /></>}
         </div>
       </div>
@@ -257,13 +307,19 @@ function CodeforcesCard() {
   return (
     <div className="cs-card cf-card">
       <div className="cs-card-header">
-        <div className="cs-platform-icon cf-icon">
+        <a
+          href={`https://codeforces.com/profile/${CODEFORCES_HANDLE}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cs-platform-icon cf-icon"
+          aria-label="View Codeforces profile"
+        >
           <svg viewBox="0 0 50 50" fill="none">
             <rect x="6"  y="20" width="10" height="24" rx="2" fill="#38bdf8" />
             <rect x="20" y="12" width="10" height="32" rx="2" fill="#7dd3fc" />
             <rect x="34" y="6"  width="10" height="38" rx="2" fill="#bae6fd" />
           </svg>
-        </div>
+        </a>
         <div>
           <h3 className="cs-platform-name">Codeforces</h3>
           <span className="cs-platform-handle">
