@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./Home.css";
 import profile from "../assets/vibha1.jpeg";
 // IMPORT YOUR PDF HERE
-import resumeFile from "../assets/Vibha_final.pdf"; 
+import resumeFile from "../assets/Resume.pdf"; 
 
 const roles = ["MERN Developer"];
 
