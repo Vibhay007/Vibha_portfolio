@@ -75,11 +75,9 @@ function LeetCodeCard() {
 
   useEffect(() => {
     // Primary stable mirror endpoint requiring NO proxy middleware
-    const targetUrl = `https://leetcode-api-faisalshohag.vercel.app/Vibha_07`;
-    // Badges and contest rating aren't in the endpoint above, so fetch them separately
-    const badgesUrl = `https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/badges`;
-    const contestUrl = `https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/contest`;
-
+    const targetUrl = `/api/leetcode?username=${LEETCODE_USERNAME}`;
+const badgesUrl = `/api/leetcode-extra?username=${LEETCODE_USERNAME}&type=badges`;
+const contestUrl = `/api/leetcode-extra?username=${LEETCODE_USERNAME}&type=contest`;
     // Derive active days + max streak from the real submissionCalendar
     const computeCalendarStats = (submissionCalendar = {}) => {
       const dayTimestamps = Object.keys(submissionCalendar)
